@@ -1,0 +1,26 @@
+{
+  "network": {
+    "mopub": {
+      "api_key": "abc",
+      "report_key": "xyz"
+    },
+    "mobfox": {
+      "api_key": "abc"
+    },
+    "flurry": {
+      "api_key": "abc"
+    },
+    "glispa": {
+      "publisher_id": "abc",
+      "client_id": "abc",
+      "client_secret": "abc",
+      "refresh_token": "abc"
+    },
+    "admob": {
+      "publisher_id": "abc",
+      "client_id": "abc",
+      "client_secret": "abc",
+      "refresh_token": "abc"
+    }
+  }
+}
