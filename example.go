@@ -8,6 +8,7 @@ import (
 	"github.com/econnelly/myrevenue/adnetwork/admob"
 	"github.com/econnelly/myrevenue/adnetwork/flurry"
 	"github.com/econnelly/myrevenue/adnetwork/glispa"
+	"github.com/econnelly/myrevenue/adnetwork/inmobi"
 	"github.com/econnelly/myrevenue/adnetwork/mobfox"
 	"github.com/econnelly/myrevenue/adnetwork/mopub"
 	"io/ioutil"
@@ -46,6 +47,10 @@ type Config struct {
 			ClientSecret string `json:"client_secret"`
 			RefreshToken string `json:"refresh_token"`
 		} `json:"admob"`
+		Inmobi struct {
+			Username  string `json:"username"`
+			SecretKey string `json:"secret_key"`
+		} `json:"inmobi"`
 	} `json:"network"`
 }
 
@@ -159,6 +164,17 @@ func InitNetworks(config *Config) []adnetwork.Request {
 			EndDate:      endDate,
 		}
 		networks = append(networks, &admobRequester)
+	}
+
+	if config.Network.Inmobi.SecretKey != "" {
+		inmobiRequester := inmobi.ReportRequester{
+			SecretKey: config.Network.Inmobi.SecretKey,
+			Username:  config.Network.Inmobi.Username,
+			StartDate: startDate,
+			EndDate:   endDate,
+		}
+
+		networks = append(networks, &inmobiRequester)
 	}
 
 	return networks
